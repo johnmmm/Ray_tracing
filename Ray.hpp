@@ -81,13 +81,29 @@ public:
     }
     
     //面光源？？？
+    Light(vector3<double> start_point, vector3<double> u_direction, vector3<double> v_direction, vector3<double> direction, int line_num, int row_num, double input_intensity)          //面光源的两个方向，和光的方向
+    {
+        intensity = input_intensity;
+        double each_intensity = intensity / (line_num * row_num);
+        for (int i = 0; i < line_num; i++)
+        {
+            for (int j = 0; j < row_num; j++)
+            {
+                Single_Light single_light(start_point, direction, each_intensity, Color(255, 255, 255, 255));
+                each_light.push_back(single_light);
+                start_point = start_point + v_direction;
+            }
+            start_point = start_point + u_direction;
+            start_point = start_point - v_direction * row_num;
+        }
+    }
 };
 
-struct Material_feature //物体的各种反射系数
+struct Material_feature //物体的各种反射系数  dsa 漫反环
 {
     double Kdr = 0, Kdg = 0, Kdb = 0;//漫反射
-    double Ksr = 0, Ksg = 0, Ksb = 0;//
-    double Kar = 0, Kag = 0, Kab = 0;//
+    double Ksr = 0, Ksg = 0, Ksb = 0;//反射（反射的比例）
+    double Kar = 0, Kag = 0, Kab = 0;//环境光反射系数（在图像之中的颜色）
 };
 
 

@@ -181,4 +181,5 @@ vector3<double> reflect(vector3<double> in, vector3<double> normal_vector);//返
 
 bool refract(vector3<double> in, vector3<double> normal_vector, double ni, double nt, vector3<double> &out);//折射
 //normal_vector为法向量，ni，nt为两个折射率
+
 #endif /* Point_hpp */

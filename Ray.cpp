@@ -17,4 +17,5 @@ Ray::Ray(vector3<double> input_point, vector3<double> input_direction)
 
 Ray::~Ray()
 {
+    
 }
