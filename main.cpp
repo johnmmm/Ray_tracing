@@ -5,6 +5,7 @@
 #include "Sphere.hpp"
 #include "Point.hpp"
 #include "World.hpp"
+#include "Beizer_rotates.hpp"
 using namespace std;
 
 int main()
@@ -53,6 +54,12 @@ int main()
 //    ball->refract_coefficient = 1.0;
     //ball->n = 1.62;
     world.add_object(ball);
+    
+    Beizer_rotates b;
+    b.add_control_point(vector3<double>(0, 1, 0));
+    b.add_control_point(vector3<double>(0, 2, 1.6));
+    b.add_control_point(vector3<double>(0, 3, 1.3));
+    b.output_obj();
     
     world.ray_trace();
     Drawer *p = Drawer::get_instance();
