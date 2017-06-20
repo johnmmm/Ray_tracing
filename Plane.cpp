@@ -47,7 +47,7 @@ bool Plane::intersect(Ray input_ray, vector3<double> &intersect_point)
 {
     double denominator = input_ray.direction * normal_vector;
     double numerator = input_ray.start_point * normal_vector + D;
-    if (fabs(denominator) <= limit_zero)              //直线与平面平行
+    if (abs(denominator) <= limit_zero)              //直线与平面平行
     {
         return false;
     }
@@ -69,7 +69,7 @@ bool Plane::intersect(Ray input_ray, vector3<double> &intersect_point)
 double Plane::signed_distance(Ray input_ray)
 {
     double denominator = input_ray.direction * normal_vector;
-    if (fabs(denominator) < limit_zero)
+    if (abs(denominator) < limit_zero)
     {
         return std::numeric_limits<double>::infinity();
     }

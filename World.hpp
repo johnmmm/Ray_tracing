@@ -31,7 +31,7 @@ public:
     double current_n;  //当前的折射率
     Light light;
     Camera camera;
-    const int recursive_depth = 10; //递归深度
+    const int recursive_depth = 20; //递归深度
     
     bool intersect_point(Ray input_ray, int &object_index, vector3<double> &point);//求取距离input_ray最近的交点
     Color determine_color_normalvec(int object_index, vector3<double> point, vector3<double> in_direction, vector3<double> &normal_vector);     //获得颜色（已经添加了阴影）和法向量，传入的第三个参数为射入方向

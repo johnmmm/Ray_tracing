@@ -38,7 +38,7 @@ Color PhongModel::reflect_color(Single_Light light, vector3<double> normal_vecto
     //cout << "veiw" << view_direction.x << " " << view_direction.y << view_direction.z << endl;
     //cout << reverse_view.x << " " << reverse_view.y << " " << reverse_view.z << endl;
     //cout<<"reverse light " << reverse_light.x << " " << reverse_light.y << " " << reverse_light.z << endl;
-    vector3<double> angle_bisector = (reverse_light + reverse_view).normallize();             //«ÛΩ«∆Ω∑÷œﬂ
+    vector3<double> angle_bisector = (reverse_light + reverse_view).normallize();          
     double R_V_dot = angle_bisector * normal_vector;
     
     if (R_V_dot < 0)

@@ -15,64 +15,64 @@
 #include <iostream>
 #define limit_zero 0.00000001
 
-template<typename T>
-class vector2
-{
-public:
-    T x;
-    T y;
-    T length;
-    vector2()
-    {
-        x = 0;
-        y = 0;
-        length = 0;
-    }
-    vector2(T input_x, T input_y)
-    {
-        x = input_x;
-        y = input_y;
-        length = sqrt(x * x + y * y);
-    }
-    T operator*(vector2<T> &a)
-    {
-        T dot_x = a.x * x;
-        T dot_y = a.y * y;
-        return dot_x + dot_y;
-    }
-    vector2<T> operator*(const double &a)
-    {
-        T temp_x = x * a;
-        T temp_y = y * a;
-        return vector2<T>(temp_x, temp_y);
-    }
-    vector2<T> operator+(const vector2<T> &a)
-    {
-        T plus_x = a.x + x;
-        T plus_y = a.y + y;
-        return vector2<T>(plus_x, plus_y);
-    }
-    vector2<T> operator-(const vector2<T> &a)
-    {
-        T minus_x = a.x - x;
-        T minus_y = a.y - y;
-        return vector2<T>(minus_x, minus_y);
-    }
-    T get_length()
-    {
-        length = sqrt(x * x + y * y);
-        return length;
-    }
-    vector2 normallize()//单位长度
-    {
-        assert(length > limit_zero);
-        vector2<T> normallized;
-        normallized.length = 1;
-        normallized.x = x / length;
-        normallized.y = y / length;
-        return normallized;
-    }
-};
+//template<typename T>
+//class vector2
+//{
+//public:
+//    T x;
+//    T y;
+//    T length;
+//    vector2()
+//    {
+//        x = 0;
+//        y = 0;
+//        length = 0;
+//    }
+//    vector2(T input_x, T input_y)
+//    {
+//        x = input_x;
+//        y = input_y;
+//        length = sqrt(x * x + y * y);
+//    }
+//    T operator*(vector2<T> &a)
+//    {
+//        T dot_x = a.x * x;
+//        T dot_y = a.y * y;
+//        return dot_x + dot_y;
+//    }
+//    vector2<T> operator*(const double &a)
+//    {
+//        T temp_x = x * a;
+//        T temp_y = y * a;
+//        return vector2<T>(temp_x, temp_y);
+//    }
+//    vector2<T> operator+(const vector2<T> &a)
+//    {
+//        T plus_x = a.x + x;
+//        T plus_y = a.y + y;
+//        return vector2<T>(plus_x, plus_y);
+//    }
+//    vector2<T> operator-(const vector2<T> &a)
+//    {
+//        T minus_x = a.x - x;
+//        T minus_y = a.y - y;
+//        return vector2<T>(minus_x, minus_y);
+//    }
+//    T get_length()
+//    {
+//        length = sqrt(x * x + y * y);
+//        return length;
+//    }
+//    vector2 normallize()//单位长度
+//    {
+//        assert(length > limit_zero);
+//        vector2<T> normallized;
+//        normallized.length = 1;
+//        normallized.x = x / length;
+//        normallized.y = y / length;
+//        return normallized;
+//    }
+//};
 
 template<typename T>
 class vector3

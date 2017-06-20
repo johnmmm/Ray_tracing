@@ -75,11 +75,10 @@ public:
     void set_size(unsigned input_width, unsigned input_height);//设置图片大小
     void set_pixel(unsigned x, unsigned y, Color color);//
     void set_pixel(Point point, Color color);//画图
-    Color get_pixel(unsigned x, unsigned y);//
+    Color get_pixel(unsigned x, unsigned y);//获得颜色
     Color get_pixel(Point point);
     bool output_image();//保存图片
     bool point_illegal(int x, int y);
-    const char* filename = "test.bmp";
 
     vector<unsigned char> image;
     unsigned width;

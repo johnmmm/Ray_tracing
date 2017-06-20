@@ -21,4 +21,5 @@ Object::Object()//初始就认为没有了
 
 Object::~Object()
 {
+    
 }

@@ -18,8 +18,6 @@
 
 class Object
 {
-protected:
-    virtual void init() = 0;
 public:
     enum Object_type
     {
@@ -39,6 +37,9 @@ public:
     bool reflective, refractive;                  //是否可反射，是否可折射
     double reflect_coefficient, refract_coefficient;         //反射和折射的系数，光强衰减的大概
     double n;                  //折射率
+    
+protected:
+    virtual void init() = 0;
 };
 
 #endif /* Objects_hpp */

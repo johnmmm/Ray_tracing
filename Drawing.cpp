@@ -65,7 +65,7 @@ Color Drawer::get_pixel(Point point)
 
 bool Drawer::output_image()
 {
-    cv::imwrite("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/test.bmp", images);
+    cv::imwrite("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/test_1.bmp", images);
     return true;
 }
 

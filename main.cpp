@@ -14,19 +14,20 @@ int main()
     start=clock();
     
     World world;
-    Object* floor = new Plane(vector3<double>(0, 0, -10), vector3<double>(0, 0, 1));
-    floor->reflective = true;
-    floor->reflect_coefficient = 0.2;
-    floor->color_feature.Kab = 0.3, floor->color_feature.Kdb = 0.4; floor->color_feature.Ksb = 0.3;
-    floor->color_feature.Kar = 0.3, floor->color_feature.Kdr = 0.4; floor->color_feature.Ksr = 0.3;
-    world.add_object(floor);
     
-    Object* ceiling = new Plane(vector3<double>(0, 0, 10), vector3<double>(0, 0, -1));
-    ceiling->reflective = true;
-    ceiling->reflect_coefficient = 0.2;
-    ceiling->color_feature.Kab = 0.3, ceiling->color_feature.Kdb = 0.4; ceiling->color_feature.Ksb = 0.3;
-    ceiling->color_feature.Kar = 0.3, ceiling->color_feature.Kdr = 0.4; ceiling->color_feature.Ksr = 0.3;
-    world.add_object(ceiling);
+    Object* leftwall = new Plane(vector3<double>(0, 0, -10), vector3<double>(0, 0, 1));
+    leftwall->reflective = true;
+    leftwall->reflect_coefficient = 0.2;
+    leftwall->color_feature.Kab = 0.3, leftwall->color_feature.Kdb = 0.4; leftwall->color_feature.Ksb = 0.3;
+    leftwall->color_feature.Kar = 0.3, leftwall->color_feature.Kdr = 0.4; leftwall->color_feature.Ksr = 0.3;
+    world.add_object(leftwall);
+    
+    Object* rightwall = new Plane(vector3<double>(0, 0, 10), vector3<double>(0, 0, -1));//两边自带反光
+    rightwall->reflective = true;
+    rightwall->reflect_coefficient = 0.2;
+    rightwall->color_feature.Kab = 0.3, rightwall->color_feature.Kdb = 0.4; rightwall->color_feature.Ksb = 0.3;
+    rightwall->color_feature.Kar = 0.3, rightwall->color_feature.Kdr = 0.4; rightwall->color_feature.Ksr = 0.3;
+    world.add_object(rightwall);
     
     Object* forwardwall = new Plane(vector3<double>(10, 0, 0), vector3<double>(-1, 0, 0));
     forwardwall->color_feature.Kar = 0.3;
@@ -34,12 +35,12 @@ int main()
     forwardwall->color_feature.Ksr = 0.3;
     world.add_object(forwardwall);
     
-    Object* backwall = new Plane(vector3<double>(-10, 0, 0), vector3<double>(1, 0, 0));
-    world.add_object(backwall);
-    Object* leftwall = new Plane(vector3<double>(0, -10, 0), vector3<double>(0, 1, 0));
-    world.add_object(leftwall);
-    Object* rightwall = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
-    world.add_object(rightwall);
+//    Object* backwall = new Plane(vector3<double>(-10, 0, 0), vector3<double>(1, 0, 0));
+//    world.add_object(backwall);
+    Object* ceiling = new Plane(vector3<double>(0, -10, 0), vector3<double>(0, 1, 0));
+    world.add_object(ceiling);
+    Object* floor = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
+    world.add_object(floor);
     
     Object* ball = new Sphere(vector3<double>(5, 6.5, -2), 1.5);
 //    ball->opacity = 1.0;
