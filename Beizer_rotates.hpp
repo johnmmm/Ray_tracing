@@ -13,9 +13,13 @@
 #include <vector>
 #include "Beizer_Lines.hpp"
 #include "Point.hpp"
+#include "Objects.hpp"
+#include "PhongModel.hpp"
 using namespace std;
 
 const double pi = 3.1415926;
+
+
 class Rotate
 {
 public:
@@ -44,9 +48,11 @@ private:
 
 
 
-class Beizer_rotates
+class Beizer_rotates : public Object
 {
 public:
+    void init();
+    
     Beizer_rotates();                          //默认是按0, 0, 1旋转的
     Beizer_rotates(vector3<double> input_axis);
     ~Beizer_rotates();
@@ -58,7 +64,12 @@ public:
     void generate_meshes(vector<vector3<double> > &points, vector<vector3<int> > &meshes);          //产生曲线所对应的网格
     void output_obj();//输出为obj文件
     
-private:
+    bool intersect(Ray input_ray, vector3<double> &intersect_point);
+    Color get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in);   //in为法向量的引用
+    bool NewtonIteration(Ray input_ray, double& t, double& tl, double& theta);
+    
+    double last_t = 0, last_tl = 0, last_theta = 0;
+
     Beizer_Lines beizer_line;
     Rotate rotate;
 };

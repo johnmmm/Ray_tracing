@@ -6,6 +6,7 @@
 #include "Point.hpp"
 #include "World.hpp"
 #include "Beizer_rotates.hpp"
+#include "Beizer_Surface.hpp"
 using namespace std;
 
 int main()
@@ -43,6 +44,7 @@ int main()
     Object* floor = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
     world.add_object(floor);
     
+    //Object* ball = new Sphere(vector3<double>(8/9, 10/9, 13.35/9), 2.5);
     Object* ball = new Sphere(vector3<double>(5, 6.5, -2), 1.5);
 //    ball->opacity = 1.0;
 //    ball->reflective = true;
@@ -55,12 +57,24 @@ int main()
     //ball->n = 1.62;
     world.add_object(ball);
     
-    Beizer_rotates b;
-    b.add_control_point(vector3<double>(0, 1, 0));
-    b.add_control_point(vector3<double>(0, 2, 1.6));
-    b.add_control_point(vector3<double>(0, 3, 1.3));
-    b.output_obj();
+    //Beizer_Surface a;
+//    a.set_control_point(0, 0, vector3<double>(0, 0, 0));
+//    a.set_control_point(0, 1, vector3<double>(0, 1.5, 1));
+//    a.set_control_point(0, 2, vector3<double>(0, 2, 0.5));
+//    a.set_control_point(1, 0, vector3<double>(1, 0, 0.3));
+//    a.set_control_point(1, 1, vector3<double>(1, 1, 10));
+//    a.set_control_point(1, 2, vector3<double>(1, 2, 0.9));
+//    a.set_control_point(2, 0, vector3<double>(2, 0, -0.2));
+//    a.set_control_point(2, 1, vector3<double>(2, 1.3, 0.05));
+//    a.set_control_point(2, 2, vector3<double>(1, 2.2, 0.8));
+//    a.output_obj();
     
+    Object* mian = new Beizer_Surface();
+    world.add_object(mian);
+    
+//    Object* xian = new Beizer_rotates();
+//    world.add_object(xian);
+
     world.ray_trace();
     Drawer *p = Drawer::get_instance();
     p->output_image();

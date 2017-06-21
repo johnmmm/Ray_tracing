@@ -52,7 +52,7 @@ public:
     Light()
     {
         intensity = 0.9;
-        Single_Light single_light(vector3<double>(0, 0, 8), vector3<double>(0, 0, -1), 1, Color(255, 255, 255, 255));
+        Single_Light single_light(vector3<double>(0, -2, 8), vector3<double>(0, 0, -1), 1, Color(255, 255, 255, 255));
         each_light.push_back(single_light);
         //自己默认自己的光源位置
     }

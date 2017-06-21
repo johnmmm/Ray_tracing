@@ -14,6 +14,7 @@ void Sphere::init()
 {
     object_type = Object_type::_Sphere;
 }
+
 Sphere::Sphere()
 {
     init();
@@ -70,7 +71,7 @@ bool Sphere::intersect(Ray input_ray, vector3<double> &intersect_point)//默认�
     }
     
     //光源在球面上（需要进行判断，如果光线的前进方向与圆心距离变近，那么求交，如果前进方向与圆心距离变远，那么不相交）
-    else if(fabs(l.length - radius) < limit_zero)
+    else if(abs(l.length - radius) < limit_zero)
     {                                            //可以根据光线的方向与到圆心的点积判断(锐角，则靠近，钝角，则远离)
         if(direction_radius_dot > 0)          //光线与球心的距离变远
         {

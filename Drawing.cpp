@@ -11,7 +11,7 @@
 #include <algorithm>
 using namespace std;
 
-Drawer* Drawer::instance = new Drawer(800, 600);  //对静态成员实例化
+Drawer* Drawer::instance = new Drawer(600, 400);  //对静态成员实例化
 
 Drawer::Drawer(int w, int h)
 {
