@@ -157,7 +157,7 @@ Color Beizer_rotates::get_color_normalvec(vector3<double> target_pos, vector3<do
     {
         in = in * -1;
     }
-    return PhongModel::reflect_color(light, in, view_direction, color_feature);
+    return PhongModel::reflect_color(light, in, view_direction, feature);
 }
 
 bool Beizer_rotates::NewtonIteration(Ray input_ray, double& t, double& tl, double& theta)

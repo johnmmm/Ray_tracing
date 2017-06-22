@@ -13,14 +13,14 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 {
     init();
     
-    opacity = 0.0;
-    reflective = true;
-    opacity = 0.83;
+//    opacity = 0.0;
+//    reflective = true;
+//    opacity = 0.83;
 //    color_feature.Kab = 0;
 //    color_feature.Kdb = 0;
 //    color_feature.Ksb = 0;
-    refract_coefficient = 0.933;
-    reflect_coefficient = 0.99;
+//    refract_coefficient = 0.933;
+//    reflect_coefficient = 0.99;
 //    n = 1.5;
     
     controlled_points = new vector3<double>*[line];
@@ -130,7 +130,7 @@ vector3<double> Beizer_Surface::getdpdv(double u, double v)
 bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double& v)
 {
     double delta_t = 0, delta_u = 0, delta_v = 0;
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 10; i++)
     {
         //vector3<double> beizer_point = get_point(u,v);
         
@@ -154,9 +154,9 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
         tmp = surface_partial_du.cross_product(f_value);
         delta_v = input_ray.direction * tmp / D;
         
-        t -= delta_t*(1+0.01*(20-i));
-        u -= delta_u*(1+0.01*(20-i));
-        v += delta_v*(1+0.01*(20-i));
+        t -= delta_t*(1+0.001);
+        u -= delta_u*(1+0.001);
+        v += delta_v*(1+0.001);
         
         //cout << t << " " << u << " " << v << endl;
     }
@@ -348,6 +348,15 @@ Color Beizer_Surface::get_color_normalvec(vector3<double> target_pos, vector3<do
     {
         in = in * -1;
     }
-    return PhongModel::reflect_color(light, in, view_direction, color_feature);
+    return PhongModel::reflect_color(light, in, view_direction, feature);
     
 }
+
+vector3<double> Beizer_Surface::get_normalvec(vector3<double> target_pos, vector3<double> view_direction)
+{
+    vector3<double> du = getdpdu(last_u,last_v);
+    vector3<double> dv = getdpdv(last_u,last_v);
+    
+    return du.cross_product(dv);
+}
+

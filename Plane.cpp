@@ -32,9 +32,9 @@ Plane::Plane(vector3<double> in_point, vector3<double> input_normal_vector)
     B = normal_vector.y;
     C = normal_vector.z;
     D = -1 * (A * passed_point.x + B * passed_point.y + C * passed_point.z);
-    color_feature.Kdg = 0.2;
-    color_feature.Ksg = 0.5;
-    color_feature.Kag = 0.2;
+//    color_feature.Kdb = 0.2;
+//    color_feature.Ksb = 0.5;
+//    color_feature.Kab = 0.2;
     n = 0;
 }
 
@@ -84,6 +84,14 @@ double Plane::signed_distance(Ray input_ray)
 Color Plane::get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in)
 {
     light.direction = (target_pos - light.start_point).normallize();
+    
     in = normal_vector.normallize();
-    return PhongModel::reflect_color(light, normal_vector, view_direction, color_feature);
+    return PhongModel::reflect_color(light, normal_vector, view_direction, feature);
 }
+
+
+vector3<double> Plane::get_normalvec(vector3<double> target_pos, vector3<double> view_direction)//法向量
+{
+    return normal_vector.normallize();
+}
+

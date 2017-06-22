@@ -20,35 +20,32 @@ using namespace std;
 class Ray
 {
 public:
-    vector3<double> start_point;   //开始点和方向
-    vector3<double> direction;
     Ray(vector3<double> input_point, vector3<double> input_direction);
     virtual ~Ray();
+    
+    vector3<double> start_point;//开始点和方向
+    vector3<double> direction;
 };
 
-class Single_Light : public Ray   //点光源
+
+class Single_Light : public Ray//点光源
 {
 public:
-    double intensity; // 强度
-    Color color;
     //起点，方向，强度，颜色（前两个继承前面的）
     Single_Light(vector3<double> input_point, vector3<double> input_direction, double input_intensity, Color in_color) : Ray(input_point, input_direction)
     {
         intensity = input_intensity;
         color = in_color;
     }
-    ~Single_Light()
-    {
-        
-    }
+    ~Single_Light(){}
+    
+    double intensity; // 强度
+    Color color;
 };
 
 class Light
 {
 public:
-    vector<Single_Light> each_light;//记录光点们
-    double intensity; //强度
-    
     Light()
     {
         intensity = 0.9;
@@ -64,6 +61,10 @@ public:
         each_light.push_back(single_light);
         //单个白光源
     }
+    
+    vector<Single_Light> each_light;//记录光点们
+    double intensity; //强度
+    //面光源弃疗了
     
     Light(vector3<double> start_point, vector3<double> end_point, vector3<double> direction, int light_num, double input_intensity)
     {

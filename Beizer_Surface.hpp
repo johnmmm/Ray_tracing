@@ -37,6 +37,7 @@ public:
     bool intersect(Ray input_ray, vector3<double> &intersect_point);
     bool ball_intersect(Ray input_ray, vector3<double> &ball_vec);
     Color get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in);   //in为法向量的引用
+    vector3<double> get_normalvec(vector3<double> target_pos, vector3<double> view_direction);//法向量
     
     double du = 0.011f, dv = 0.011f;
     double solve_precision = 0.001;

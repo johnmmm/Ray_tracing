@@ -2,14 +2,14 @@
 //  Point.cpp
 //  myfirstopencvpro
 //
-//  Created by mac on 17/6/9.
+//  Created by mac on 17/6/22.
 //  Copyright © 2017年 mac. All rights reserved.
 //
 
 #include "Point.hpp"
-using namespace std;
 
-std::ostream& operator<<(std::ostream& out, const vector3<double>& s)
+
+std::ostream& operator<<(std::ostream& out, const vector3<double>& s)//输出调试
 {
     out << "[" << s.x << " ," << s.y << " ," << s.z << "]";
     return out;
@@ -21,7 +21,7 @@ std::ostream& operator<<(std::ostream& out, const vector3<int>& s)
     return out;
 }
 
-vector3<double> reflect(vector3<double> in, vector3<double> normal_vector)
+vector3<double> reflect(vector3<double> in, vector3<double> normal_vector)//返回以normal_vector为法向量,in为射入的单位化向量
 {
     if (normal_vector * in > 0)//判断夹角
     {
@@ -31,6 +31,7 @@ vector3<double> reflect(vector3<double> in, vector3<double> normal_vector)
 }
 
 //判断是否会发生全反射
+//折射  normal_vector为法向量，ni，nt为两个折射率
 bool refract(vector3<double> in, vector3<double> normal_vector, double ni, double nt, vector3<double> &out)
 {
     in = in * -1;
@@ -50,4 +51,3 @@ bool refract(vector3<double> in, vector3<double> normal_vector, double ni, doubl
     out = (in * (-1 * (ni_cp_nt)) + normal_vector * (ni_cp_nt * cos_i - cos_t)).normallize();
     return true;
 }
-
