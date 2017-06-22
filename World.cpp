@@ -244,10 +244,13 @@ void World::ray_trace()
 {
     cout << camera.size_x << " " << camera.size_y << endl;
     for (int i = 0; i < camera.size_x; i++)
+    {
+        cout << i << endl;
         for (int j = 0; j < camera.size_y; j++)
         {
             Drawer_instance->set_pixel(i, j, ray_trace(i - (camera.size_x / 2), j - (camera.size_y / 2)));
         }
+    }
 }
 
 void World::photon_cast()

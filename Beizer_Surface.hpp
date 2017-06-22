@@ -22,7 +22,7 @@ class Beizer_Surface : public Object
 {
 public:
     //Beizer_Surface(){init();}
-    Beizer_Surface(int input_line=3, int input_row=3);//指定biezer_surface几行几列
+    Beizer_Surface(int input_line=4, int input_row=4);//指定biezer_surface几行几列
     ~Beizer_Surface();
     
     void set_control_point(int x, int y, vector3<double> input);//设置第x行第y列
@@ -45,7 +45,7 @@ public:
     int line, row;
     map<vector3<double>, vector2<double>> uvmap;
     double last_u, last_v;
-    vector3<double> BallPoint = vector3<double>(8/9, 10/9, 13.35/9);
+    vector3<double> BallPoint = vector3<double>(0/16, 0/16, -27.1/16);
 };
 
 #endif /* Beizer_Surface_hpp */

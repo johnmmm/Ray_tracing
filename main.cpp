@@ -78,7 +78,7 @@ int main()
     World world;
     Object* floor = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
     floor->feature.absorb = 0.5; floor->feature.diffuse_reflect = 0.5;
-    //floor->feature.reflect_green = 0.5;
+    floor->feature.reflect_red = 0.8; floor->feature.reflect_green = 0.8; floor->feature.reflect_blue = 0.8;
     world.add_object(floor);
     
     Object* ceiling = new Plane(vector3<double>(0, -10, 0), vector3<double>(0, 1, 0));
@@ -117,13 +117,18 @@ int main()
 //    rightwall->color_feature.Kar = 0.3, rightwall->color_feature.Kdr = 0.4; rightwall->color_feature.Ksr = 0.3;
     world.add_object(rightwall);
     
-    Object* ball = new Sphere(vector3<double>(5, 6.5, -2), 1.5);
-    ball->feature.absorb = 0.05; ball->feature.diffuse_reflect = 0; ball->feature.specular_reflect = 0; ball->feature.refract = 0.95;
-    world.add_object(ball);
+    Object* ball1 = new Sphere(vector3<double>(5, 7, 0), 1.5);
+    ball1->feature.absorb = 0.05; ball1->feature.diffuse_reflect = 0; ball1->feature.specular_reflect = 0; ball1->feature.refract = 0.95;
+    world.add_object(ball1);
+    
+    Object* ball2 = new Sphere(vector3<double>(6,8,5),2.0);
+    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0.95; ball2->feature.refract = 0;
+    ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
+    world.add_object(ball2);
     
     Object* mian = new Beizer_Surface();
-    mian->feature.absorb = 0.2; mian->feature.diffuse_reflect = 0.3; mian->feature.specular_reflect = 0.5;
-    mian->feature.reflect_red = 0.7; mian->feature.reflect_green = 0.4; mian->feature.reflect_blue = 0.7;
+    mian->feature.absorb = 0.5; mian->feature.diffuse_reflect = 0.5; mian->feature.specular_reflect = 0.0;
+    //mian->feature.reflect_red = 0.7; mian->feature.reflect_green = 0.4; mian->feature.reflect_blue = 0.7;
 //    mian->reflective = true;
 //    mian->reflect_coefficient = 0.3;
     world.add_object(mian);

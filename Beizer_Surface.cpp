@@ -29,15 +29,70 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
         controlled_points[i] = new vector3<double>[row];
     }
     
-    set_control_point(0, 0, vector3<double>(0, 0, 0));
-    set_control_point(0, 1, vector3<double>(0, 1.5, 1));
-    set_control_point(0, 2, vector3<double>(0, 2, 0.5));
-    set_control_point(1, 0, vector3<double>(1, 0, 0.3));
-    set_control_point(1, 1, vector3<double>(1, 1, 10));
-    set_control_point(1, 2, vector3<double>(1, 2, 0.9));
-    set_control_point(2, 0, vector3<double>(2, 0, -0.2));
-    set_control_point(2, 1, vector3<double>(2, 1.3, 0.05));
-    set_control_point(2, 2, vector3<double>(1, 2.2, 0.8));
+//    set_control_point(0, 0, vector3<double>(0, 0, -5));
+//    set_control_point(0, 1, vector3<double>(0, 1.5, -4));
+//    set_control_point(0, 2, vector3<double>(0, 2, -4.5));
+//    set_control_point(0, 3, vector3<double>(0, 2.5, -4));
+//    set_control_point(1, 0, vector3<double>(1, 0, -4.7));
+//    set_control_point(1, 1, vector3<double>(1, 1, 5));
+//    set_control_point(1, 2, vector3<double>(1, 2, -4.1));
+//    set_control_point(1, 3, vector3<double>(1, 3, 4.4));
+//    set_control_point(2, 0, vector3<double>(2, 0, -5.2));
+//    set_control_point(2, 1, vector3<double>(2, 1.3, -4.95));
+//    set_control_point(2, 2, vector3<double>(1, 2.2, -4.2));
+//    set_control_point(2, 3, vector3<double>(1, 3.2, -3.8));
+//    set_control_point(3, 0, vector3<double>(3, 0, -4.7));
+//    set_control_point(3, 1, vector3<double>(3, 1, 5));
+//    set_control_point(3, 2, vector3<double>(2, 2, -4.1));
+//    set_control_point(3, 3, vector3<double>(3, 3, 4.4));
+    
+    
+    
+//    set_control_point(0, 0, vector3<double>(0.6, 0.8, 0));
+//    set_control_point(0, 1, vector3<double>(-0.8, 0.6, 0));
+//    set_control_point(0, 2, vector3<double>(0.8, -0.6, 0));
+//    set_control_point(0, 3, vector3<double>(-0.6, -0.8, 0));
+//    set_control_point(1, 0, vector3<double>(0.9, 1.2, -1));
+//    set_control_point(1, 1, vector3<double>(-1.2, 0.6, -1));
+//    set_control_point(1, 2, vector3<double>(1.2, -0.6, -1));
+//    set_control_point(1, 3, vector3<double>(-0.9, -1.2, -1));
+//    set_control_point(2, 0, vector3<double>(1.4, 1.4, -2.2));
+//    set_control_point(2, 1, vector3<double>(-1.4, 1.4, -2.3));
+//    set_control_point(2, 2, vector3<double>(1.4, -1.4, -2.2));
+//    set_control_point(2, 3, vector3<double>(-1.4, -1.4, -2.3));
+//    set_control_point(3, 0, vector3<double>(1.5, 1.5, -3.5));
+//    set_control_point(3, 1, vector3<double>(-1.5, 1.5, -3.5));
+//    set_control_point(3, 2, vector3<double>(1.5, -1.5, -3.6));
+//    set_control_point(3, 3, vector3<double>(-1.5, -1.5, -3.5));
+    
+    set_control_point(0, 0, vector3<double>(7, 9, -8));
+    set_control_point(0, 1, vector3<double>(7.5, 7, -6.8));
+    set_control_point(0, 2, vector3<double>(8, 8, -5.40));
+    set_control_point(0, 3, vector3<double>(7, 9, -4));
+    set_control_point(1, 0, vector3<double>(5, 9.5, -9));
+    set_control_point(1, 1, vector3<double>(5, 8, -7.40));
+    set_control_point(1, 2, vector3<double>(5, 7, -5.40));
+    set_control_point(1, 3, vector3<double>(5, 7.5, -4));
+    set_control_point(2, 0, vector3<double>(3.5, 7, -8));
+    set_control_point(2, 1, vector3<double>(3.5, 6.5, -6.4));
+    set_control_point(2, 2, vector3<double>(3.5, 7.5, -5.25));
+    set_control_point(2, 3, vector3<double>(3.5, 8.5, -4));
+    set_control_point(3, 0, vector3<double>(2, 9, -8));
+    set_control_point(3, 1, vector3<double>(2.5, 8, -6.66));
+    set_control_point(3, 2, vector3<double>(2.5, 8.5, -5.33));
+    set_control_point(3, 3, vector3<double>(2, 9, -4));
+    
+    double xs = 0, ys = 0, zs = 0;
+    for(int i = 0; i < line; i++)
+        for(int j = 0; j < row; j++)
+        {
+            xs += controlled_points[i][j].x;
+            ys += controlled_points[i][j].y;
+            zs += controlled_points[i][j].z;
+        }
+    BallPoint = vector3<double>(xs/16,ys/16,zs/16);
+    
+    
     output_obj();
 }
 
@@ -130,7 +185,7 @@ vector3<double> Beizer_Surface::getdpdv(double u, double v)
 bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double& v)
 {
     double delta_t = 0, delta_u = 0, delta_v = 0;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 15; i++)
     {
         //vector3<double> beizer_point = get_point(u,v);
         
@@ -154,9 +209,9 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
         tmp = surface_partial_du.cross_product(f_value);
         delta_v = input_ray.direction * tmp / D;
         
-        t -= delta_t*(1+0.001);
-        u -= delta_u*(1+0.001);
-        v += delta_v*(1+0.001);
+        t -= delta_t*0.99;
+        u -= delta_u*0.99;
+        v += delta_v*0.99;
         
         //cout << t << " " << u << " " << v << endl;
     }
@@ -229,7 +284,7 @@ void Beizer_Surface::output_obj()
 
 bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
 {
-    double t = 0.1, u = 0.2, v = 0.2;
+    double t = 0.01, u = 0.5, v = 0.5;
 //    u = (double)(rand() % 8 + 1) / 10;
 //    v = (double)(rand() % 8 + 1) / 10;
     vector3<double> ballvecs(0,0,0);
@@ -275,7 +330,7 @@ bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
 bool Beizer_Surface::ball_intersect(Ray input_ray, vector3<double> &intersect_point)
 {
     intersect_point = input_ray.start_point;
-    double radius = 2.7;
+    double radius = 3;
     double square_radius = radius * radius;
 
     vector3<double> l = BallPoint - input_ray.start_point;

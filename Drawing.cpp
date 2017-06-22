@@ -11,7 +11,7 @@
 #include <algorithm>
 using namespace std;
 
-Drawer* Drawer::instance = new Drawer(400, 300);  //对静态成员实例化
+Drawer* Drawer::instance = new Drawer(1280,960);  //对静态成员实例化
 
 Drawer::Drawer(int w, int h)
 {
@@ -66,6 +66,18 @@ Color Drawer::get_pixel(Point point)
 bool Drawer::output_image()
 {
     cv::imwrite("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/test_1.bmp", images);
+    
+    
+    cv::Mat small_images(images.rows/2,images.cols/2,CV_8UC3);
+    for(int i = 0; i < small_images.rows; i++)
+        for(int j = 0; j < small_images.cols; j++)
+        {
+            small_images.at<cv::Vec3b>(i,j)[0] = (images.at<cv::Vec3b>(i*2,j*2)[0]+images.at<cv::Vec3b>(i*2+1,j*2)[0]+images.at<cv::Vec3b>(i*2,j*2+1)[0]+images.at<cv::Vec3b>(i*2+1,j*2+1)[0])/4;
+            small_images.at<cv::Vec3b>(i,j)[1] = (images.at<cv::Vec3b>(i*2,j*2)[1]+images.at<cv::Vec3b>(i*2+1,j*2)[1]+images.at<cv::Vec3b>(i*2,j*2+1)[1]+images.at<cv::Vec3b>(i*2+1,j*2+1)[1])/4;
+            small_images.at<cv::Vec3b>(i,j)[2] = (images.at<cv::Vec3b>(i*2,j*2)[2]+images.at<cv::Vec3b>(i*2+1,j*2)[2]+images.at<cv::Vec3b>(i*2,j*2+1)[2]+images.at<cv::Vec3b>(i*2+1,j*2+1)[2])/4;
+        }
+    cv::imwrite("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/small_one.bmp", small_images);
+    
     return true;
 }
 
