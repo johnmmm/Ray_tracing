@@ -14,7 +14,7 @@ World::World() : light()
     //light = Light(vector3<double>(0, 0, 0), vector3<double>(0.5, 0, 0), vector3<double>(0, 0.5, 0), vector3<double>(0, 0, -1), 5, 5, 0.9);
     //尝试面光源失败。。。
     
-    camera = Camera(vector3<double>(-14, -1.8, 0), vector3<double>(1, 0, 0), vector3<double>(0, 0, 1));
+    camera = Camera(vector3<double>(-15, -3, 0), vector3<double>(1, 0, 0), vector3<double>(0, 0, 1));
     Drawer_instance = Drawer::get_instance();
     Drawer_instance->set_size(camera.size_x, camera.size_y);
 }
@@ -63,14 +63,14 @@ bool World::intersect_other_objects(vector3<double> point)
             vector3<double> intersect_point;
             if (objects[i]->intersect(to_light_ray, intersect_point))
             {
-                vector3<double> to_object = light.each_light[k].start_point - intersect_point;       //to object表示与intersect_to_light同向的由灯到物体的向量
+                vector3<double> to_object = light.each_light[k].start_point - intersect_point;//to object表示与intersect_to_light同向的由灯到物体的向量
+                
                 if (to_object.length < distance && intersect_to_light * to_object > limit_zero)
-                {
                     return true;
-                }
             }
         }
     }
+    
     return false;
 }
 

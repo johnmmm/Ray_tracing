@@ -12,7 +12,7 @@
 Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line), row(input_row)
 {
     init();
-    
+    srand((unsigned)time(NULL));
 //    opacity = 0.0;
 //    reflective = true;
 //    opacity = 0.83;
@@ -46,8 +46,6 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 2, vector3<double>(2, 2, -4.1));
 //    set_control_point(3, 3, vector3<double>(3, 3, 4.4));
     
-    
-    
 //    set_control_point(0, 0, vector3<double>(0.6, 0.8, 0));
 //    set_control_point(0, 1, vector3<double>(-0.8, 0.6, 0));
 //    set_control_point(0, 2, vector3<double>(0.8, -0.6, 0));
@@ -65,22 +63,39 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 2, vector3<double>(1.5, -1.5, -3.6));
 //    set_control_point(3, 3, vector3<double>(-1.5, -1.5, -3.5));
     
-    set_control_point(0, 0, vector3<double>(7, 9, -8));
-    set_control_point(0, 1, vector3<double>(7.5, 7, -6.8));
-    set_control_point(0, 2, vector3<double>(8, 8, -5.40));
-    set_control_point(0, 3, vector3<double>(7, 9, -4));
-    set_control_point(1, 0, vector3<double>(5, 9.5, -9));
-    set_control_point(1, 1, vector3<double>(5, 8, -7.40));
-    set_control_point(1, 2, vector3<double>(5, 7, -5.40));
-    set_control_point(1, 3, vector3<double>(5, 7.5, -4));
-    set_control_point(2, 0, vector3<double>(3.5, 7, -8));
-    set_control_point(2, 1, vector3<double>(3.5, 6.5, -6.4));
-    set_control_point(2, 2, vector3<double>(3.5, 7.5, -5.25));
-    set_control_point(2, 3, vector3<double>(3.5, 8.5, -4));
-    set_control_point(3, 0, vector3<double>(2, 9, -8));
-    set_control_point(3, 1, vector3<double>(2.5, 8, -6.66));
-    set_control_point(3, 2, vector3<double>(2.5, 8.5, -5.33));
-    set_control_point(3, 3, vector3<double>(2, 9, -4));
+//    set_control_point(0, 0, vector3<double>(7, 9.2, -9));
+//    set_control_point(0, 1, vector3<double>(7.5, 6.8, -6.99));
+//    set_control_point(0, 2, vector3<double>(8, 7.8, -5.60));
+//    set_control_point(0, 3, vector3<double>(7, 9, -4));
+//    set_control_point(1, 0, vector3<double>(5, 7.4, -9));
+//    set_control_point(1, 1, vector3<double>(5, 6.2, -7.20));
+//    set_control_point(1, 2, vector3<double>(5, 7, -5.80));
+//    set_control_point(1, 3, vector3<double>(5, 8.2, -4));
+//    set_control_point(2, 0, vector3<double>(3.5, 8.2, -9));
+//    set_control_point(2, 1, vector3<double>(3.5, 8.6, -6.9));
+//    set_control_point(2, 2, vector3<double>(3.5, 9.8, -5.55));
+//    set_control_point(2, 3, vector3<double>(3.5, 8.5, -4));
+//    set_control_point(3, 0, vector3<double>(2, 9, -9));
+//    set_control_point(3, 1, vector3<double>(2.5, 8.6, -7.36));
+//    set_control_point(3, 2, vector3<double>(2.5, 9.2, -5.67));
+//    set_control_point(3, 3, vector3<double>(2, 9, -4));
+    
+    set_control_point(0, 0, vector3<double>(1, 7, -8));
+    set_control_point(0, 1, vector3<double>(0.5, 9, -6.8));
+    set_control_point(0, 2, vector3<double>(0, 8, -5.40));
+    set_control_point(0, 3, vector3<double>(1, 7, -4));
+    set_control_point(1, 0, vector3<double>(3, 6.5, -9));
+    set_control_point(1, 1, vector3<double>(3, 8, -7.40));
+    set_control_point(1, 2, vector3<double>(3, 9, -5.40));
+    set_control_point(1, 3, vector3<double>(3, 8.5, -4));
+    set_control_point(2, 0, vector3<double>(4.5, 9, -8));
+    set_control_point(2, 1, vector3<double>(4.5, 9.5, -6.4));
+    set_control_point(2, 2, vector3<double>(4.5, 8.5, -5.25));
+    set_control_point(2, 3, vector3<double>(4.5, 7.5, -4));
+    set_control_point(3, 0, vector3<double>(6, 7, -8));
+    set_control_point(3, 1, vector3<double>(5.5, 8, -6.66));
+    set_control_point(3, 2, vector3<double>(5.5, 7.5, -5.33));
+    set_control_point(3, 3, vector3<double>(6, 7, -4));
     
     double xs = 0, ys = 0, zs = 0;
     for(int i = 0; i < line; i++)
@@ -91,6 +106,11 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
             zs += controlled_points[i][j].z;
         }
     BallPoint = vector3<double>(xs/16,ys/16,zs/16);
+    //cout << xs/16 << " " << ys/16 << " " << zs/16 << endl;
+    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
+    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
+    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
+    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
     
     
     output_obj();
@@ -185,7 +205,7 @@ vector3<double> Beizer_Surface::getdpdv(double u, double v)
 bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double& v)
 {
     double delta_t = 0, delta_u = 0, delta_v = 0;
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 20; i++)
     {
         //vector3<double> beizer_point = get_point(u,v);
         
@@ -209,9 +229,9 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
         tmp = surface_partial_du.cross_product(f_value);
         delta_v = input_ray.direction * tmp / D;
         
-        t -= delta_t*0.99;
-        u -= delta_u*0.99;
-        v += delta_v*0.99;
+        t -= delta_t*0.8;
+        u -= delta_u*0.8;
+        v += delta_v*0.8;
         
         //cout << t << " " << u << " " << v << endl;
     }
@@ -286,34 +306,16 @@ void Beizer_Surface::output_obj()
 bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
 {
     double t = 0.01, u = 0.5, v = 0.5;
-//    u = (double)(rand() % 8 + 1) / 10;
-//    v = (double)(rand() % 8 + 1) / 10;
+    u = (double)(rand() % 999+0.1) / 1000;
+    v = (double)(rand() % 999+0.1) / 1000;
     vector3<double> ballvecs(0,0,0);
     if(ball_intersect(input_ray, intersect_point))
     {
-//        vector3<double> vecn(0,0,0);
-//        vecn = intersect_point - BallPoint;
-//        vecn = vecn.normallize();
-//        
-//        int tmmp = vecn.x * 10;
-//        vecn.x = double(tmmp) / 10;
-//        tmmp = vecn.y * 10;
-//        vecn.y = double(tmmp) / 10;
-//        tmmp = vecn.z * 10;
-//        vecn.z = double(tmmp) / 10;
-//        cout << vecn.x << " " << vecn.y << " " << vecn.z << endl;
-//        
-//        u = uvmap[vecn].x + 0.001;
-//        v = uvmap[vecn].y + 0.001;
-//        cout << "uv" << u << " " << v << endl;
+        u = (double)(rand() % 999+0.1) / 1000;
+        v = (double)(rand() % 999+0.1) / 1000;
+        u = 0.5; v = 0.5;
         if(NewtonIteration(input_ray, t, u, v))
         {
-            //cout << "uv" << u << " " << v << endl;
-            //        int tmmp = u * 1000;
-            //        u = double(tmmp) / 1000;
-            //        tmmp = v * 1000;
-            //        v = double(tmmp) / 1000;
-            
             intersect_point = get_point(u, v);
             //uvmap[intersect_point] = vector2<double>(u, v);
             
@@ -324,6 +326,30 @@ bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
             //cout << "Points:" << intersect_point.x << " " << intersect_point.y << " " << intersect_point.z << endl;
             return true;
         }
+        
+        u = (double)(rand() % 999+0.1) / 1000;//第二次
+        v = (double)(rand() % 999+0.1) / 1000;
+        if(NewtonIteration(input_ray, t, u, v))
+        {
+            intersect_point = get_point(u, v);
+            
+            last_u = u;
+            last_v = v;
+
+            return true;
+        }
+        
+        u = (double)(rand() % 999+0.1) / 1000;//第三次
+        v = (double)(rand() % 999+0.1) / 1000;
+        if(NewtonIteration(input_ray, t, u, v))
+        {
+            intersect_point = get_point(u, v);
+            
+            last_u = u;
+            last_v = v;
+
+            return true;
+        }
     }
     return false;
 }
@@ -331,7 +357,6 @@ bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
 bool Beizer_Surface::ball_intersect(Ray input_ray, vector3<double> &intersect_point)
 {
     intersect_point = input_ray.start_point;
-    double radius = 3;
     double square_radius = radius * radius;
 
     vector3<double> l = BallPoint - input_ray.start_point;
@@ -386,7 +411,6 @@ bool Beizer_Surface::ball_intersect(Ray input_ray, vector3<double> &intersect_po
 
 Color Beizer_Surface::get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in)   //in为法向量的引用
 {
-    //cout << "fuck YOU" << endl;
     light.direction = (target_pos - light.start_point).normallize();
     
 //    vector2<double> uv = uvmap[target_pos];

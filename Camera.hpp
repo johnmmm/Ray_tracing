@@ -32,7 +32,7 @@ public:
     double view_angle_h, view_angle_w;        //视角
     double distance;                //距离
     
-    Camera(vector3<double> eye_place, vector3<double> forward_direction, vector3<double> upward_direction, unsigned int picture_size_x = 480, unsigned int picture_size_y = 640, double input_angle_h =85)
+    Camera(vector3<double> eye_place, vector3<double> forward_direction, vector3<double> upward_direction, unsigned int picture_size_x = 960, unsigned int picture_size_y = 1280, double input_angle_h =95)
     {
         position = eye_place;
         upward = upward_direction.normallize();

@@ -121,18 +121,25 @@ int main()
     ball1->feature.absorb = 0.05; ball1->feature.diffuse_reflect = 0; ball1->feature.specular_reflect = 0; ball1->feature.refract = 0.95;
     world.add_object(ball1);
     
-    Object* ball2 = new Sphere(vector3<double>(6,8,5),2.0);
+    Object* ball2 = new Sphere(vector3<double>(5,8,5),2.0);
     ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0.95; ball2->feature.refract = 0;
     ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
     world.add_object(ball2);
     
+//    Object* ball2 = new Sphere(vector3<double>(3.46875, 7.9375, -6.1025),2.9);
+//    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0; ball2->feature.refract = 0.95;
+//    //ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
+//    world.add_object(ball2);
+    
     Object* mian = new Beizer_Surface();
     mian->feature.absorb = 0.5; mian->feature.diffuse_reflect = 0.5; mian->feature.specular_reflect = 0.0;
-    //mian->feature.reflect_red = 0.7; mian->feature.reflect_green = 0.4; mian->feature.reflect_blue = 0.7;
+//    mian->feature.reflect_red = 0.7; mian->feature.reflect_green = 0.4; mian->feature.reflect_blue = 0.7;
 //    mian->reflective = true;
 //    mian->reflect_coefficient = 0.3;
     world.add_object(mian);
 
+    
+    
     world.photon_cast();
     world.ray_trace();
     Drawer *p = Drawer::get_instance();

@@ -68,7 +68,7 @@ public:
     {
         if (instance == nullptr)
         {
-            instance = new Drawer(480,640);
+            instance = new Drawer(960,1280);
         }
         return instance;
     }
