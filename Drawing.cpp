@@ -11,7 +11,7 @@
 #include <algorithm>
 using namespace std;
 
-Drawer* Drawer::instance = new Drawer(1280,960);  //对静态成员实例化
+Drawer* Drawer::instance = new Drawer(480,640);  //对静态成员实例化
 
 Drawer::Drawer(int w, int h)
 {
@@ -68,7 +68,7 @@ bool Drawer::output_image()
     cv::imwrite("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/test_1.bmp", images);
     
     
-    cv::Mat small_images(images.rows/2,images.cols/2,CV_8UC3);
+    cv::Mat small_images(images.rows/2,images.cols/2,CV_8UC3);//缩小，抗锯齿
     for(int i = 0; i < small_images.rows; i++)
         for(int j = 0; j < small_images.cols; j++)
         {

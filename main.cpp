@@ -94,10 +94,10 @@ int main()
 //    forwardwall->color_feature.Ksr = 0.3;
     world.add_object(forwardwall);
     
-    Object* backwall = new Plane(vector3<double>(-10, 0, 0), vector3<double>(1, 0, 0));
-    backwall->feature.absorb = 0.5; backwall->feature.diffuse_reflect = 0.5;
-    backwall->feature.reflect_blue = 0.5;
-    world.add_object(backwall);
+//    Object* backwall = new Plane(vector3<double>(-10, 0, 0), vector3<double>(1, 0, 0));
+//    backwall->feature.absorb = 0.5; backwall->feature.diffuse_reflect = 0.5;
+//    backwall->feature.reflect_blue = 0.5;
+//    world.add_object(backwall);
     
     Object* leftwall = new Plane(vector3<double>(0, 0, -10), vector3<double>(0, 0, 1));
     leftwall->feature.absorb = 0.4; leftwall->feature.diffuse_reflect = 0.4; leftwall->feature.specular_reflect = 0.2;

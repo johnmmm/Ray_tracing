@@ -14,7 +14,7 @@ World::World() : light()
     //light = Light(vector3<double>(0, 0, 0), vector3<double>(0.5, 0, 0), vector3<double>(0, 0.5, 0), vector3<double>(0, 0, -1), 5, 5, 0.9);
     //尝试面光源失败。。。
     
-    camera = Camera(vector3<double>(-5, 0, 0), vector3<double>(1, 0, 0), vector3<double>(0, 0, 1));
+    camera = Camera(vector3<double>(-14, -1.8, 0), vector3<double>(1, 0, 0), vector3<double>(0, 0, 1));
     Drawer_instance = Drawer::get_instance();
     Drawer_instance->set_size(camera.size_x, camera.size_y);
 }

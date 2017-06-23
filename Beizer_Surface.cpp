@@ -233,7 +233,8 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
 
 void Beizer_Surface::generate_meshes(vector<vector3<double> > &points, vector<vector3<int> > &meshes)
 {
-    int num_u = 1 / du + 1, num_v = 1 / dv + 1;        //将要生成的u, v的数量
+    int num_v = 1 / dv + 1;        //将要生成的u, v的数量
+    //num_u = 1 / du + 1,
     int counter = 0;
     for (double u = 0.0f, i = 0; u <= (1.0f + limit_zero); u += du, i++)
     {
@@ -244,15 +245,15 @@ void Beizer_Surface::generate_meshes(vector<vector3<double> > &points, vector<ve
             vecn = vecuv - BallPoint;
             vecn = vecn.normallize();
             
-            int tmmp = vecn.x * 10;
-            vecn.x = double(tmmp) / 10;
-            tmmp = vecn.y * 10;
-            vecn.y = double(tmmp) / 10;
-            tmmp = vecn.z * 10;
-            vecn.z = double(tmmp) / 10;
-            
-            uvmap[vecn] = vector2<double>(u, v);
-            //cout << "uv" << u << " " << v << endl;
+//            int tmmp = vecn.x * 10;
+//            vecn.x = double(tmmp) / 10;
+//            tmmp = vecn.y * 10;
+//            vecn.y = double(tmmp) / 10;
+//            tmmp = vecn.z * 10;
+//            vecn.z = double(tmmp) / 10;
+//            
+//            uvmap[vecn] = vector2<double>(u, v);
+//            //cout << "uv" << u << " " << v << endl;
             
             points.push_back(vecuv);
             counter++;
@@ -360,8 +361,8 @@ bool Beizer_Surface::ball_intersect(Ray input_ray, vector3<double> &intersect_po
     }
     
     //光源在球面上（需要进行判断，如果光线的前进方向与圆心距离变近，那么求交，如果前进方向与圆心距离变远，那么不相交）
-    else if(abs(l.length - radius) < limit_zero)
-    {                                            //可以根据光线的方向与到圆心的点积判断(锐角，则靠近，钝角，则远离)
+    else if(abs(l.length - radius) < limit_zero)//可以根据光线的方向与到圆心的点积判断(锐角，则靠近，钝角，则远离)
+    {
         if(direction_radius_dot > 0)          //光线与球心的距离变远
         {
             double square_distance = l.length * l.length - direction_radius_dot * direction_radius_dot;
@@ -371,12 +372,12 @@ bool Beizer_Surface::ball_intersect(Ray input_ray, vector3<double> &intersect_po
             intersect_point = input_ray.start_point + input_ray.direction * t;
             return true;
         }
-        else                                 //变近？
+        else
         {
             return false;
         }
     }
-    else                                               //光源在球面内
+    else                                              
     {
         return true;
     }

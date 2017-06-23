@@ -65,7 +65,8 @@ public:
                 it++;
             
             kdnode_list.insert(it, make_pair(input_node, distance));
-            it = kdnode_list.end(); --it;
+            it = kdnode_list.end();
+            it--;
             max_value = it->second;
             return true;
         }
@@ -81,26 +82,23 @@ public:
                 kdnode_list.pop_back();
                 auto it = kdnode_list.begin();
                 while (it != kdnode_list.end() && it->second < distance)
-                {
-                    ++it;
-                }
+                    it++;
+                
                 kdnode_list.insert(it, make_pair(input_node, distance));
-                it = kdnode_list.end(); --it;
+                it = kdnode_list.end();
+                it--;
                 max_value = it->second;
                 return true;
             }
         }
     }
     
-    double max_value;       //k个节点中距离的最大值
-    list<pair<kd_node*, double>> kdnode_list;            //第一项为当前节点，第二项为当前节点与target的距离
+    double max_value;//k个节点中距离的最大值
+    list<pair<kd_node*, double>> kdnode_list;//第一项为当前节点，第二项为当前节点与target的距离
     int k_size;
 };
 
-
 double getvalue(photon input, int dimension);
-
-
 void quickSelect(vector<photon>& photon_array, int k, int dimension);//找第k大的点
 
 

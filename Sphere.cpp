@@ -82,12 +82,12 @@ bool Sphere::intersect(Ray input_ray, vector3<double> &intersect_point)//默认�
             intersect_point = input_ray.start_point + input_ray.direction * t;
             return true;
         }
-        else                                 //变近？
+        else//变近？
         {
             return false;
         }
     }
-    else                                               //光源在球面内
+    else//光源在球面内
     {
         double square_distance = l.length * l.length - direction_radius_dot * direction_radius_dot;
         double square_t1 = square_radius - square_distance;
