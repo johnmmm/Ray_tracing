@@ -45,8 +45,10 @@ public:
     int line, row;
     map<vector3<double>, vector2<double>> uvmap;
     double last_u, last_v;
-    double radius = 3;
+    double radius = 3.9;
     vector3<double> BallPoint = vector3<double>(0/16, 0/16, -27.1/16);
+    cv::Mat image2 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/marble.jpg");  //加载图像
+
 };
 
 #endif /* Beizer_Surface_hpp */

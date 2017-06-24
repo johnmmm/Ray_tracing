@@ -29,6 +29,7 @@ public:
     vector3<double> normal_vector;             //平面的法向量
     vector3<double> passed_point;              //经过的点
     Plane(vector3<double> input_point, vector3<double> input_normal_vector);
+    cv::Mat image = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/huaji.jpeg");  //加载图像
     
 private:
     void init();

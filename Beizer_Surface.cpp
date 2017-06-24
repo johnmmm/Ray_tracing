@@ -63,6 +63,7 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 2, vector3<double>(1.5, -1.5, -3.6));
 //    set_control_point(3, 3, vector3<double>(-1.5, -1.5, -3.5));
     
+    //正着的曲面
 //    set_control_point(0, 0, vector3<double>(7, 9.2, -9));
 //    set_control_point(0, 1, vector3<double>(7.5, 6.8, -6.99));
 //    set_control_point(0, 2, vector3<double>(8, 7.8, -5.60));
@@ -80,6 +81,7 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 2, vector3<double>(2.5, 9.2, -5.67));
 //    set_control_point(3, 3, vector3<double>(2, 9, -4));
     
+    //倒过来的曲面
     set_control_point(0, 0, vector3<double>(1, 7, -8));
     set_control_point(0, 1, vector3<double>(0.5, 9, -6.8));
     set_control_point(0, 2, vector3<double>(0, 8, -5.40));
@@ -97,6 +99,41 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
     set_control_point(3, 2, vector3<double>(5.5, 7.5, -5.33));
     set_control_point(3, 3, vector3<double>(6, 7, -4));
     
+//    set_control_point(0, 0, vector3<double>(1, 9, -8));
+//    set_control_point(0, 1, vector3<double>(0.5, 7.5, -6.8));
+//    set_control_point(0, 2, vector3<double>(0, 6.8, -5.40));
+//    set_control_point(0, 3, vector3<double>(1, 5.6, -4));
+//    set_control_point(1, 0, vector3<double>(3, 8.6, -9));
+//    set_control_point(1, 1, vector3<double>(3, 7.7, -7.40));
+//    set_control_point(1, 2, vector3<double>(3, 6.95, -5.40));
+//    set_control_point(1, 3, vector3<double>(3, 6.8, -4));
+//    set_control_point(2, 0, vector3<double>(4.5, 9, -8));
+//    set_control_point(2, 1, vector3<double>(4.5, 7.8, -6.4));
+//    set_control_point(2, 2, vector3<double>(4.5, 7.3, -5.25));
+//    set_control_point(2, 3, vector3<double>(4.5, 7.5, -4));
+//    set_control_point(3, 0, vector3<double>(6, 9.2, -8));
+//    set_control_point(3, 1, vector3<double>(5.5, 9, -6.66));
+//    set_control_point(3, 2, vector3<double>(5.5, 8.6, -5.33));
+//    set_control_point(3, 3, vector3<double>(6, 9, -4));
+    
+    //matlab的曲面
+//    set_control_point(0, 0, vector3<double>(6, 9, -8));
+//    set_control_point(0, 1, vector3<double>(5.5, 0, -6.8));
+//    set_control_point(0, 2, vector3<double>(5.5, 7.2, -5.40));
+//    set_control_point(0, 3, vector3<double>(6, 8.8, -4));
+//    set_control_point(1, 0, vector3<double>(4.5, 8.7, -9));
+//    set_control_point(1, 1, vector3<double>(4.5, 5.05, -7.40));
+//    set_control_point(1, 2, vector3<double>(4.5, 8.9, -5.40));
+//    set_control_point(1, 3, vector3<double>(4.5, 5.5, -4));
+//    set_control_point(2, 0, vector3<double>(3, 8.8, -8));
+//    set_control_point(2, 1, vector3<double>(3, 8.0, -6.4));
+//    set_control_point(2, 2, vector3<double>(3, 9.5, -5.25));
+//    set_control_point(2, 3, vector3<double>(3, 8.95, -4));
+//    set_control_point(3, 0, vector3<double>(1, 9, -8));
+//    set_control_point(3, 1, vector3<double>(1, 9.15, -6.66));
+//    set_control_point(3, 2, vector3<double>(1, 9.1, -5.33));
+//    set_control_point(3, 3, vector3<double>(1, 9, -4));
+    
     double xs = 0, ys = 0, zs = 0;
     for(int i = 0; i < line; i++)
         for(int j = 0; j < row; j++)
@@ -106,11 +143,12 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
             zs += controlled_points[i][j].z;
         }
     BallPoint = vector3<double>(xs/16,ys/16,zs/16);
-    //cout << xs/16 << " " << ys/16 << " " << zs/16 << endl;
-    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
-    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
-    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
-    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
+    
+//    cout << xs/16 << " " << ys/16 << " " << zs/16 << endl;
+//    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
+//    cout << sqrt((xs/16-1)*(xs/16-1) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
+//    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+8)*(zs/16+8)) << endl;
+//    cout << sqrt((xs/16-6)*(xs/16-6) + (ys/16-7)*(ys/16-7) + (zs/16+4)*(zs/16+4)) << endl;
     
     
     output_obj();
@@ -205,7 +243,7 @@ vector3<double> Beizer_Surface::getdpdv(double u, double v)
 bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double& v)
 {
     double delta_t = 0, delta_u = 0, delta_v = 0;
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 50; i++)
     {
         //vector3<double> beizer_point = get_point(u,v);
         
@@ -229,9 +267,12 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
         tmp = surface_partial_du.cross_product(f_value);
         delta_v = input_ray.direction * tmp / D;
         
-        t -= delta_t*0.8;
-        u -= delta_u*0.8;
-        v += delta_v*0.8;
+        t -= delta_t*0.48;
+        u -= delta_u*0.48;
+        v += delta_v*0.48;
+        
+        if (u < 0 || u > 1 || v < 0 || v > 1)
+            return false;
         
         //cout << t << " " << u << " " << v << endl;
     }
@@ -309,11 +350,12 @@ bool Beizer_Surface::intersect(Ray input_ray, vector3<double> &intersect_point)
     u = (double)(rand() % 999+0.1) / 1000;
     v = (double)(rand() % 999+0.1) / 1000;
     vector3<double> ballvecs(0,0,0);
+
     if(ball_intersect(input_ray, intersect_point))
     {
         u = (double)(rand() % 999+0.1) / 1000;
         v = (double)(rand() % 999+0.1) / 1000;
-        u = 0.5; v = 0.5;
+        u = 0.6; v = 0.6;
         if(NewtonIteration(input_ray, t, u, v))
         {
             intersect_point = get_point(u, v);
@@ -428,7 +470,20 @@ Color Beizer_Surface::get_color_normalvec(vector3<double> target_pos, vector3<do
     {
         in = in * -1;
     }
-    return PhongModel::reflect_color(light, in, view_direction, feature);
+    
+    object_feature feature1;
+    feature1.absorb = 0.5;
+    feature1.diffuse_reflect = 0.5;
+    
+    int yy = last_u*1024, zz = last_v*1024;
+    
+    feature1.reflect_blue = (double)image2.at<cv::Vec3b>(yy,zz)[0] / (double)255;
+    feature1.reflect_green = (double)image2.at<cv::Vec3b>(yy,zz)[1] / (double)255;
+    feature1.reflect_red = (double)image2.at<cv::Vec3b>(yy,zz)[2] / (double)255;
+    
+    return PhongModel::reflect_color(light, in, view_direction, feature1);
+    
+    //return PhongModel::reflect_color(light, in, view_direction, feature);
     
 }
 

@@ -8,6 +8,7 @@
 
 #include "Plane.hpp"
 #include "PhongModel.hpp"
+#include "Drawing.hpp"
 #include <iostream>
 using namespace std;
 
@@ -86,6 +87,24 @@ Color Plane::get_color_normalvec(vector3<double> target_pos, vector3<double> vie
     light.direction = (target_pos - light.start_point).normallize();
     
     in = normal_vector.normallize();
+    
+    if(A == -1 && target_pos.y > -4.2 && target_pos.y < 4.2 && target_pos.z > -7.5 && target_pos.z < 7.5)
+    {
+        object_feature feature1;
+        feature1.absorb = 0.5;
+        feature1.diffuse_reflect = 0.5;
+        
+        int yy = target_pos.y*100, zz = target_pos.z*100;
+        yy /= 5;
+        zz /= 5;
+
+        feature1.reflect_blue = (double)image.at<cv::Vec3b>(yy+84,zz+150)[0] / (double)255;
+        feature1.reflect_green = (double)image.at<cv::Vec3b>(yy+84,zz+150)[1] / (double)255;
+        feature1.reflect_red = (double)image.at<cv::Vec3b>(yy+84,zz+150)[2] / (double)255;
+        
+        return PhongModel::reflect_color(light, normal_vector, view_direction, feature1);
+    }
+    
     return PhongModel::reflect_color(light, normal_vector, view_direction, feature);
 }
 
