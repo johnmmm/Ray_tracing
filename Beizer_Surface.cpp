@@ -82,22 +82,22 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 3, vector3<double>(2, 9, -4));
     
     //倒过来的曲面
-    set_control_point(0, 0, vector3<double>(1, 7, -8));
-    set_control_point(0, 1, vector3<double>(0.5, 9, -6.8));
-    set_control_point(0, 2, vector3<double>(0, 8, -5.40));
-    set_control_point(0, 3, vector3<double>(1, 7, -4));
-    set_control_point(1, 0, vector3<double>(3, 6.5, -9));
-    set_control_point(1, 1, vector3<double>(3, 8, -7.40));
-    set_control_point(1, 2, vector3<double>(3, 9, -5.40));
-    set_control_point(1, 3, vector3<double>(3, 8.5, -4));
-    set_control_point(2, 0, vector3<double>(4.5, 9, -8));
-    set_control_point(2, 1, vector3<double>(4.5, 9.5, -6.4));
-    set_control_point(2, 2, vector3<double>(4.5, 8.5, -5.25));
-    set_control_point(2, 3, vector3<double>(4.5, 7.5, -4));
-    set_control_point(3, 0, vector3<double>(6, 7, -8));
-    set_control_point(3, 1, vector3<double>(5.5, 8, -6.66));
-    set_control_point(3, 2, vector3<double>(5.5, 7.5, -5.33));
-    set_control_point(3, 3, vector3<double>(6, 7, -4));
+//    set_control_point(0, 0, vector3<double>(1, 7, -8));
+//    set_control_point(0, 1, vector3<double>(0.5, 9, -6.8));
+//    set_control_point(0, 2, vector3<double>(0, 8, -5.40));
+//    set_control_point(0, 3, vector3<double>(1, 7, -4));
+//    set_control_point(1, 0, vector3<double>(3, 6.5, -9));
+//    set_control_point(1, 1, vector3<double>(3, 8, -7.40));
+//    set_control_point(1, 2, vector3<double>(3, 9, -5.40));
+//    set_control_point(1, 3, vector3<double>(3, 8.5, -4));
+//    set_control_point(2, 0, vector3<double>(4.5, 9, -8));
+//    set_control_point(2, 1, vector3<double>(4.5, 9.5, -6.4));
+//    set_control_point(2, 2, vector3<double>(4.5, 8.5, -5.25));
+//    set_control_point(2, 3, vector3<double>(4.5, 7.5, -4));
+//    set_control_point(3, 0, vector3<double>(6, 7, -8));
+//    set_control_point(3, 1, vector3<double>(5.5, 8, -6.66));
+//    set_control_point(3, 2, vector3<double>(5.5, 7.5, -5.33));
+//    set_control_point(3, 3, vector3<double>(6, 7, -4));
     
 //    set_control_point(0, 0, vector3<double>(1, 9, -8));
 //    set_control_point(0, 1, vector3<double>(0.5, 7.5, -6.8));
@@ -117,22 +117,22 @@ Beizer_Surface::Beizer_Surface(int input_line, int input_row): line(input_line),
 //    set_control_point(3, 3, vector3<double>(6, 9, -4));
     
     //matlab的曲面
-//    set_control_point(0, 0, vector3<double>(6, 9, -8));
-//    set_control_point(0, 1, vector3<double>(5.5, 0, -6.8));
-//    set_control_point(0, 2, vector3<double>(5.5, 7.2, -5.40));
-//    set_control_point(0, 3, vector3<double>(6, 8.8, -4));
-//    set_control_point(1, 0, vector3<double>(4.5, 8.7, -9));
-//    set_control_point(1, 1, vector3<double>(4.5, 5.05, -7.40));
-//    set_control_point(1, 2, vector3<double>(4.5, 8.9, -5.40));
-//    set_control_point(1, 3, vector3<double>(4.5, 5.5, -4));
-//    set_control_point(2, 0, vector3<double>(3, 8.8, -8));
-//    set_control_point(2, 1, vector3<double>(3, 8.0, -6.4));
-//    set_control_point(2, 2, vector3<double>(3, 9.5, -5.25));
-//    set_control_point(2, 3, vector3<double>(3, 8.95, -4));
-//    set_control_point(3, 0, vector3<double>(1, 9, -8));
-//    set_control_point(3, 1, vector3<double>(1, 9.15, -6.66));
-//    set_control_point(3, 2, vector3<double>(1, 9.1, -5.33));
-//    set_control_point(3, 3, vector3<double>(1, 9, -4));
+    set_control_point(0, 0, vector3<double>(6, 9, -8));
+    set_control_point(0, 1, vector3<double>(5.5, 0, -6.8));
+    set_control_point(0, 2, vector3<double>(5.5, 7.2, -5.40));
+    set_control_point(0, 3, vector3<double>(6, 8.8, -4));
+    set_control_point(1, 0, vector3<double>(4.5, 8.7, -9));
+    set_control_point(1, 1, vector3<double>(4.5, 5.05, -7.40));
+    set_control_point(1, 2, vector3<double>(4.5, 8.9, -5.40));
+    set_control_point(1, 3, vector3<double>(4.5, 5.5, -4));
+    set_control_point(2, 0, vector3<double>(3, 8.8, -8));
+    set_control_point(2, 1, vector3<double>(3, 8.0, -6.4));
+    set_control_point(2, 2, vector3<double>(3, 9.5, -5.25));
+    set_control_point(2, 3, vector3<double>(3, 8.95, -4));
+    set_control_point(3, 0, vector3<double>(1, 9, -8));
+    set_control_point(3, 1, vector3<double>(1, 9.15, -6.66));
+    set_control_point(3, 2, vector3<double>(1, 9.1, -5.33));
+    set_control_point(3, 3, vector3<double>(1, 9, -4));
     
     double xs = 0, ys = 0, zs = 0;
     for(int i = 0; i < line; i++)
@@ -243,7 +243,7 @@ vector3<double> Beizer_Surface::getdpdv(double u, double v)
 bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double& v)
 {
     double delta_t = 0, delta_u = 0, delta_v = 0;
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 60; i++)
     {
         //vector3<double> beizer_point = get_point(u,v);
         
@@ -267,9 +267,9 @@ bool Beizer_Surface::NewtonIteration(Ray input_ray, double& t, double& u, double
         tmp = surface_partial_du.cross_product(f_value);
         delta_v = input_ray.direction * tmp / D;
         
-        t -= delta_t*0.48;
-        u -= delta_u*0.48;
-        v += delta_v*0.48;
+        t -= delta_t*0.45;
+        u -= delta_u*0.45;
+        v += delta_v*0.45;
         
         if (u < 0 || u > 1 || v < 0 || v > 1)
             return false;
@@ -465,25 +465,43 @@ Color Beizer_Surface::get_color_normalvec(vector3<double> target_pos, vector3<do
     
     in = du.cross_product(dv);
     in = in.normallize();
-
     if (in * light.direction > 0)
     {
         in = in * -1;
     }
     
-    object_feature feature1;
-    feature1.absorb = 0.5;
-    feature1.diffuse_reflect = 0.5;
+    double xx = (target_pos.x+10)/20, yy = (target_pos.y+10)/20;
+    int xp = xx*55, yp = yy*55;
     
-    int yy = last_u*1024, zz = last_v*1024;
+    vector3<double> qie_x, qie_y;
+    qie_x = du.normallize();
+    qie_y = dv.normallize();
+    double r_gradiant, g_gradiant, b_gradiant;
+    r_gradiant = ((double)image5.at<cv::Vec3b>(xp,yp)[2] / (double)255 - 0.5) * 2;
+    g_gradiant = ((double)image5.at<cv::Vec3b>(xp,yp)[1] / (double)255 - 0.5) * 2;
+    b_gradiant = ((double)image5.at<cv::Vec3b>(xp,yp)[0]-128) / (double)128;
     
-    feature1.reflect_blue = (double)image2.at<cv::Vec3b>(yy,zz)[0] / (double)255;
-    feature1.reflect_green = (double)image2.at<cv::Vec3b>(yy,zz)[1] / (double)255;
-    feature1.reflect_red = (double)image2.at<cv::Vec3b>(yy,zz)[2] / (double)255;
+    in = vector3<double>(qie_x.x*r_gradiant+qie_y.x*g_gradiant+in.x*b_gradiant, qie_x.y*r_gradiant+qie_y.y*g_gradiant+in.y*b_gradiant, qie_x.z*r_gradiant+qie_y.z*g_gradiant+in.z*b_gradiant);
+
+    if (in * light.direction > 0)
+    {
+        in = in * -1;
+    }
+    in = in.normallize();
     
-    return PhongModel::reflect_color(light, in, view_direction, feature1);
+//    object_feature feature1;
+//    feature1.absorb = 0.5;
+//    feature1.diffuse_reflect = 0.5;
+//    
+//    int yy = last_u*200, zz = last_v*200;
+//    
+//    feature1.reflect_blue = (double)image2.at<cv::Vec3b>(yy,zz)[0] / (double)255;
+//    feature1.reflect_green = (double)image2.at<cv::Vec3b>(yy,zz)[1] / (double)255;
+//    feature1.reflect_red = (double)image2.at<cv::Vec3b>(yy,zz)[2] / (double)255;
+//    
+//    return PhongModel::reflect_color(light, in, view_direction, feature1);
     
-    //return PhongModel::reflect_color(light, in, view_direction, feature);
+    return PhongModel::reflect_color(light, in, view_direction, feature);
     
 }
 

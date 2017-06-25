@@ -256,6 +256,6 @@ void World::ray_trace()
 void World::photon_cast()
 {
     (Photon_map::get_instance())->init_photon_map(objects, light.each_light[0].start_point, Color(255, 255, 255, 255));
-    (Photon_map::get_instance())->generate_photon(500000);
+    (Photon_map::get_instance())->generate_photon(3000000);
 }
 

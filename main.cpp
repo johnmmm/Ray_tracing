@@ -109,8 +109,8 @@ int main()
     world.add_object(leftwall);
     
     Object* rightwall = new Plane(vector3<double>(0, 0, 10), vector3<double>(0, 0, -1));
-    rightwall->feature.absorb = 0.4; rightwall->feature.diffuse_reflect = 0.4; rightwall->feature.specular_reflect = 0.2;
-    rightwall->feature.reflect_red = 0.5;
+    rightwall->feature.absorb = 0.5; rightwall->feature.diffuse_reflect = 0.5; rightwall->feature.specular_reflect = 0.0;
+    rightwall->feature.reflect_red = 0.678; rightwall->feature.reflect_green = 0.361; rightwall->feature.reflect_blue = 0.047;
 //    rightwall->reflective = true;
 //    rightwall->reflect_coefficient = 0.2;
 //    rightwall->color_feature.Kab = 0.3, rightwall->color_feature.Kdb = 0.4; rightwall->color_feature.Ksb = 0.3;
@@ -120,7 +120,7 @@ int main()
 //    Object* ball1 = new Sphere(vector3<double>(5, 7, 0), 1.5);
 //    ball1->feature.absorb = 0.05; ball1->feature.diffuse_reflect = 0; ball1->feature.specular_reflect = 0; ball1->feature.refract = 0.95;
 //    world.add_object(ball1);
-//    
+////
 //    Object* ball2 = new Sphere(vector3<double>(5,8,5),2.0);
 //    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0.95; ball2->feature.refract = 0;
 //    ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;

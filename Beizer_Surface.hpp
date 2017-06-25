@@ -45,9 +45,11 @@ public:
     int line, row;
     map<vector3<double>, vector2<double>> uvmap;
     double last_u, last_v;
-    double radius = 3.9;
+    double radius = 4;
     vector3<double> BallPoint = vector3<double>(0/16, 0/16, -27.1/16);
-    cv::Mat image2 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/marble.jpg");  //加载图像
+    cv::Mat image2 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/huawen.jpg");  //加载图像
+    cv::Mat image5 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/aotutie4.jpg");  //加载图像
+
 
 };
 

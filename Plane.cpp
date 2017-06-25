@@ -88,7 +88,7 @@ Color Plane::get_color_normalvec(vector3<double> target_pos, vector3<double> vie
     
     in = normal_vector.normallize();
     
-    if(A == -1 && target_pos.y > -4.2 && target_pos.y < 4.2 && target_pos.z > -7.5 && target_pos.z < 7.5)
+    if(A == -1 && target_pos.y > -4.2 && target_pos.y < 4.2 && target_pos.z > -7.5 && target_pos.z < 7.5)//贴滑稽
     {
         object_feature feature1;
         feature1.absorb = 0.5;
@@ -98,11 +98,65 @@ Color Plane::get_color_normalvec(vector3<double> target_pos, vector3<double> vie
         yy /= 5;
         zz /= 5;
 
-        feature1.reflect_blue = (double)image.at<cv::Vec3b>(yy+84,zz+150)[0] / (double)255;
-        feature1.reflect_green = (double)image.at<cv::Vec3b>(yy+84,zz+150)[1] / (double)255;
-        feature1.reflect_red = (double)image.at<cv::Vec3b>(yy+84,zz+150)[2] / (double)255;
+        feature1.reflect_blue = (double)image1.at<cv::Vec3b>(yy+84,zz+150)[0] / (double)255;
+        feature1.reflect_green = (double)image1.at<cv::Vec3b>(yy+84,zz+150)[1] / (double)255;
+        feature1.reflect_red = (double)image1.at<cv::Vec3b>(yy+84,zz+150)[2] / (double)255;
         
         return PhongModel::reflect_color(light, normal_vector, view_direction, feature1);
+    }
+    
+    if(B == -1 && target_pos.x > -10.0 && target_pos.x < 10.0 && target_pos.z > -10.0 && target_pos.z < 10.0)//贴地板
+    {
+        double xx = (target_pos.x+10)/20, zz = (target_pos.z+10)/20;
+        int xp = xx*599, zp = zz*599;
+        
+        object_feature feature1;
+        feature1.absorb = 0.5;
+        feature1.diffuse_reflect = 0.5;
+        
+        feature1.reflect_blue = (double)image3.at<cv::Vec3b>(xp,zp)[0] * 0.7 / (double)255;
+        feature1.reflect_green = (double)image3.at<cv::Vec3b>(xp,zp)[1] * 0.7 / (double)255;
+        feature1.reflect_red = (double)image3.at<cv::Vec3b>(xp,zp)[2] * 0.7 / (double)255;
+
+        return PhongModel::reflect_color(light, in, view_direction, feature1);
+    }
+    
+    if(C == -1 && target_pos.x > -10.0 && target_pos.x < 10.0 && target_pos.y > -10.0 && target_pos.y < 10.0)//贴右墙
+    {
+        double xx = (target_pos.x+10)/20, yy = (target_pos.y+10)/20;
+        int xp = xx*299, yp = yy*299;
+        
+        vector3<double> qie_x, qie_y;
+        qie_y = vector3<double>(1,0,0);
+        qie_x = vector3<double>(0,1,0);
+        double r_gradiant, g_gradiant, b_gradiant;
+        r_gradiant = ((double)image4.at<cv::Vec3b>(yp,xp)[2] / (double)255 - 0.5) * 2;
+        g_gradiant = ((double)image4.at<cv::Vec3b>(yp,xp)[1] / (double)255 - 0.5) * 2;
+        b_gradiant = ((double)image4.at<cv::Vec3b>(yp,xp)[0]-128) / (double)128;
+        
+        in = vector3<double>(qie_x.x*r_gradiant+qie_y.x*g_gradiant+normal_vector.x*b_gradiant, qie_x.y*r_gradiant+qie_y.y*g_gradiant+normal_vector.y*b_gradiant, qie_x.z*r_gradiant+qie_y.z*g_gradiant+normal_vector.z*b_gradiant);
+        in = in.normallize();
+        
+        return PhongModel::reflect_color(light, in, view_direction, feature);
+    }
+    
+    if(B == 1 && target_pos.x > -10.0 && target_pos.x < 10.0 && target_pos.z > -10.0 && target_pos.z < 10.0)//贴天花板
+    {
+        double xx = (target_pos.x+10)/20, zz = (target_pos.z+10)/20;
+        int xp = xx*500, zp = zz*500;
+        
+        vector3<double> qie_x, qie_y;
+        qie_y = vector3<double>(1,0,0);
+        qie_x = vector3<double>(0,0,1);
+        double r_gradiant, g_gradiant, b_gradiant;
+        r_gradiant = ((double)image6.at<cv::Vec3b>(zp,xp)[2] / (double)255 - 0.5) * 2;
+        g_gradiant = ((double)image6.at<cv::Vec3b>(zp,xp)[1] / (double)255 - 0.5) * 2;
+        b_gradiant = ((double)image6.at<cv::Vec3b>(zp,xp)[0]-128) / (double)128;
+        
+        in = vector3<double>(qie_x.x*r_gradiant+qie_y.x*g_gradiant+normal_vector.x*b_gradiant, qie_x.y*r_gradiant+qie_y.y*g_gradiant+normal_vector.y*b_gradiant, qie_x.z*r_gradiant+qie_y.z*g_gradiant+normal_vector.z*b_gradiant);
+        in = in.normallize();
+        
+        return PhongModel::reflect_color(light, in, view_direction, feature);
     }
     
     return PhongModel::reflect_color(light, normal_vector, view_direction, feature);
