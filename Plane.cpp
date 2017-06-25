@@ -33,9 +33,7 @@ Plane::Plane(vector3<double> in_point, vector3<double> input_normal_vector)
     B = normal_vector.y;
     C = normal_vector.z;
     D = -1 * (A * passed_point.x + B * passed_point.y + C * passed_point.z);
-//    color_feature.Kdb = 0.2;
-//    color_feature.Ksb = 0.5;
-//    color_feature.Kab = 0.2;
+
     n = 0;
 }
 
@@ -48,17 +46,18 @@ bool Plane::intersect(Ray input_ray, vector3<double> &intersect_point)
 {
     double denominator = input_ray.direction * normal_vector;
     double numerator = input_ray.start_point * normal_vector + D;
-    if (abs(denominator) <= limit_zero)              //直线与平面平行
+    
+    if (abs(denominator) <= limit_zero)//直线与平面平行
     {
         return false;
     }
     else
     {
         double t = (-1 * numerator) / denominator;
+        
         if (t < limit_zero)
-        {
             return false;
-        }
+
         else
         {
             intersect_point = input_ray.start_point + input_ray.direction * t;
@@ -70,15 +69,15 @@ bool Plane::intersect(Ray input_ray, vector3<double> &intersect_point)
 double Plane::signed_distance(Ray input_ray)
 {
     double denominator = input_ray.direction * normal_vector;
+    
     if (abs(denominator) < limit_zero)
-    {
         return std::numeric_limits<double>::infinity();
-    }
+
     else
     {
         double numerator = input_ray.start_point * normal_vector + D;
         double t = (-1 * numerator) / denominator;
-        return t;            //标准化的直线参数方程中,t即为距离
+        return t; //标准化的直线参数方程中,t即为距离
     }
 }
 

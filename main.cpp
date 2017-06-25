@@ -5,7 +5,6 @@
 #include "Sphere.hpp"
 #include "Point.hpp"
 #include "World.hpp"
-#include "Beizer_rotates.hpp"
 #include "Beizer_Surface.hpp"
 using namespace std;
 
@@ -14,66 +13,6 @@ int main()
     clock_t start,finish;
     double totaltime;
     start=clock();
-    
-//    World world;
-//    
-//    Object* leftwall = new Plane(vector3<double>(0, 0, -10), vector3<double>(0, 0, 1));
-//    leftwall->reflective = true;
-//    leftwall->reflect_coefficient = 0.2;
-//    leftwall->color_feature.Kab = 0.3, leftwall->color_feature.Kdb = 0.4; leftwall->color_feature.Ksb = 0.3;
-//    leftwall->color_feature.Kar = 0.3, leftwall->color_feature.Kdr = 0.4; leftwall->color_feature.Ksr = 0.3;
-//    world.add_object(leftwall);
-//    
-//    Object* rightwall = new Plane(vector3<double>(0, 0, 10), vector3<double>(0, 0, -1));//两边自带反光
-//    rightwall->reflective = true;
-//    rightwall->reflect_coefficient = 0.2;
-//    rightwall->color_feature.Kab = 0.3, rightwall->color_feature.Kdb = 0.4; rightwall->color_feature.Ksb = 0.3;
-//    rightwall->color_feature.Kar = 0.3, rightwall->color_feature.Kdr = 0.4; rightwall->color_feature.Ksr = 0.3;
-//    world.add_object(rightwall);
-//    
-//    Object* forwardwall = new Plane(vector3<double>(10, 0, 0), vector3<double>(-1, 0, 0));
-//    forwardwall->color_feature.Kar = 0.3;
-//    forwardwall->color_feature.Kdr = 0.4;
-//    forwardwall->color_feature.Ksr = 0.3;
-//    world.add_object(forwardwall);
-//    
-////    Object* backwall = new Plane(vector3<double>(-10, 0, 0), vector3<double>(1, 0, 0));
-////    world.add_object(backwall);
-//    Object* ceiling = new Plane(vector3<double>(0, -10, 0), vector3<double>(0, 1, 0));
-//    world.add_object(ceiling);
-//    Object* floor = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
-//    world.add_object(floor);
-//    
-//    //Object* ball = new Sphere(vector3<double>(8/9, 10/9, 13.35/9), 2.5);
-//    Object* ball = new Sphere(vector3<double>(5, 6.5, -2), 1.5);
-////    ball->opacity = 1.0;
-////    ball->reflective = true;
-////    ball->reflect_coefficient = 0.5;
-////    ball->color_feature.Ksr = 0.5;
-////    ball->color_feature.Ksg = 0.5;
-////    ball->color_feature.Ksb = 0.5;
-////    ball->refractive = true;
-////    ball->refract_coefficient = 1.0;
-//    //ball->n = 1.62;
-//    world.add_object(ball);
-//    
-//    //Beizer_Surface a;
-////    a.set_control_point(0, 0, vector3<double>(0, 0, 0));
-////    a.set_control_point(0, 1, vector3<double>(0, 1.5, 1));
-////    a.set_control_point(0, 2, vector3<double>(0, 2, 0.5));
-////    a.set_control_point(1, 0, vector3<double>(1, 0, 0.3));
-////    a.set_control_point(1, 1, vector3<double>(1, 1, 10));
-////    a.set_control_point(1, 2, vector3<double>(1, 2, 0.9));
-////    a.set_control_point(2, 0, vector3<double>(2, 0, -0.2));
-////    a.set_control_point(2, 1, vector3<double>(2, 1.3, 0.05));
-////    a.set_control_point(2, 2, vector3<double>(1, 2.2, 0.8));
-////    a.output_obj();
-//    
-//    Object* mian = new Beizer_Surface();
-//    world.add_object(mian);
-//    
-////    Object* xian = new Beizer_rotates();
-////    world.add_object(xian);
     
     World world;
     Object* floor = new Plane(vector3<double>(0, 10, 0), vector3<double>(0, -1, 0));
@@ -117,25 +56,23 @@ int main()
 //    rightwall->color_feature.Kar = 0.3, rightwall->color_feature.Kdr = 0.4; rightwall->color_feature.Ksr = 0.3;
     world.add_object(rightwall);
     
-//    Object* ball1 = new Sphere(vector3<double>(5, 7, 0), 1.5);
-//    ball1->feature.absorb = 0.05; ball1->feature.diffuse_reflect = 0; ball1->feature.specular_reflect = 0; ball1->feature.refract = 0.95;
-//    world.add_object(ball1);
-////
-//    Object* ball2 = new Sphere(vector3<double>(5,8,5),2.0);
-//    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0.95; ball2->feature.refract = 0;
-//    ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
-//    world.add_object(ball2);
-    
-//    Object* ball2 = new Sphere(vector3<double>(3.5625,7.79063,-6.1025),3.8);
-//    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0; ball2->feature.refract = 0.95;
-//    //ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
-//    world.add_object(ball2);
+    Object* ball1 = new Sphere(vector3<double>(5, 7, 0), 1.5);
+    ball1->feature.absorb = 0.05; ball1->feature.diffuse_reflect = 0; ball1->feature.specular_reflect = 0; ball1->feature.refract = 0.95;
+    world.add_object(ball1);
+//
+    Object* ball2 = new Sphere(vector3<double>(5,8,5),2.0);
+    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0.95; ball2->feature.refract = 0;
+    ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
+    world.add_object(ball2);
     
     Object* mian = new Beizer_Surface();
     mian->feature.absorb = 0.5; mian->feature.diffuse_reflect = 0.5; mian->feature.specular_reflect = 0.0;
     world.add_object(mian);
 
-    
+    //    Object* ball2 = new Sphere(vector3<double>(3.5625,7.79063,-6.1025),3.8);//验证包围球用
+    //    ball2->feature.absorb = 0.05; ball2->feature.diffuse_reflect = 0; ball2->feature.specular_reflect = 0; ball2->feature.refract = 0.95;
+    //    //ball2->feature.reflect_blue = 1; ball2->feature.reflect_green = 1; ball2->feature.reflect_red = 1;
+    //    world.add_object(ball2);
     
     world.photon_cast();
     world.ray_trace();

@@ -23,10 +23,61 @@ Photon_map::~Photon_map()
     
 }
 
+void Photon_map::generate_photon(int photon_num)
+{
+    for (int i = 0; i < photon_num; i++)
+    {
+        generate_photon();
+        if (i % 10000 == 0 && i != 0)
+        {
+            cout << i << endl;
+        }
+    }
+    
+    Tree = new kdTree(photon_array);
+}
+
+Color Photon_map::get_color(vector3<double> position, vector3<double> input_normal, vector3<double> input_view, double pd, double ps)
+{
+    k_collection collection = Tree->knn(position);
+    double r = 0, g = 0, b = 0;
+    
+    for (auto it = collection.kdnode_list.begin(); it != collection.kdnode_list.end(); it++)
+    {
+        vector3<double> photon_direction = it->first->current_photon.photon_ray.direction;//光子出射的方向
+        Color photon_color = it->first->current_photon.color;
+        
+        if (photon_direction * input_normal > 0)
+        {
+            input_normal = input_normal * -1;
+        }
+        
+        if (input_normal * input_view < 0)
+        {
+            r += (double)photon_color.r;
+            g += (double)photon_color.g;
+            b += (double)photon_color.b;
+        }
+    }
+    double area = PI * collection.max_value * collection.max_value;
+    
+    r /= area;
+    g /= area;
+    b /= area;
+    r *= BRDF_ratio;
+    g *= BRDF_ratio;
+    b *= BRDF_ratio;
+    r = min(r, 255.0);
+    g = min(g, 255.0);
+    b = min(b, 255.0);
+    
+    return Color(r, g, b, 255);
+}
+
 photon Photon_map::init_photon()
 {
     vector3<double> start_point;
-    start_point = light_position;//直接为点光源了
+    start_point = light_position;//点光源
     
     double theta = (rand() / (double)(RAND_MAX)) * 2 * PI;
     double phi = (rand() / (double)(RAND_MAX)) * 2 * PI;
@@ -36,32 +87,15 @@ photon Photon_map::init_photon()
     return photon(start_point, vector3<double>(x, y, z), light_color);
 }
 
-void Photon_map::change_color(photon& input_photon, object_feature input_feature, bool reflect_flag)
-{
-    if (reflect_flag)
-    {
-        input_photon.color.b = (unsigned char)(input_feature.reflect_blue * (double)input_photon.color.b);
-        input_photon.color.g = (unsigned char)(input_feature.reflect_green * (double)input_photon.color.g);
-        input_photon.color.r = (unsigned char)(input_feature.reflect_red * (double)input_photon.color.r);
-    }
-    
-    else
-    {
-        input_photon.color.b = (unsigned char)(input_feature.refract_blue * (double)input_photon.color.b);
-        input_photon.color.g = (unsigned char)(input_feature.refract_green * (double)input_photon.color.g);
-        input_photon.color.r = (unsigned char)(input_feature.refract_red * (double)input_photon.color.r);
-    }
-}
-
 void Photon_map::generate_photon()
 {
-    photon start_photon = init_photon();                   //在一个循环结束之后，需要更改start_photon的start_pos和方向
+    photon start_photon = init_photon();//在一个循环结束之后，需要更改start_photon的start_pos和方向
     
     stack<int> refract_stack;
     refract_stack.push(-1);
     double current_n = 1;
     
-    for (int i = 0; i < recursive_depth; i++)             //光子递归计算
+    for (int i = 0; i < recursive_depth; i++)//递归计算
     {
         int temp_index;//最近物体的index
         vector3<double> temp_point;//最近的交点
@@ -187,20 +221,6 @@ void Photon_map::generate_photon()
     }
 }
 
-void Photon_map::generate_photon(int photon_num)
-{
-    for (int i = 0; i < photon_num; i++)
-    {
-        generate_photon();
-        if (i % 10000 == 0 && i != 0)
-        {
-            cout << i << endl;
-        }
-    }
-    
-    Tree = new kdTree(photon_array);
-}
-
 bool Photon_map::intersect_point(Ray current_ray, int &object_index, vector3<double> &point)       //求交点
 {
     double distance = 10000000000;
@@ -227,40 +247,20 @@ bool Photon_map::intersect_point(Ray current_ray, int &object_index, vector3<dou
         return true;
 }
 
-Color Photon_map::get_color(vector3<double> position, vector3<double> input_normal, vector3<double> input_view, double pd, double ps)
+void Photon_map::change_color(photon& input_photon, object_feature input_feature, bool reflect_flag)
 {
-    k_collection collection = Tree->knn(position);
-    double r = 0, g = 0, b = 0;
-    
-    for (auto it = collection.kdnode_list.begin(); it != collection.kdnode_list.end(); it++)
+    if (reflect_flag)
     {
-        vector3<double> photon_direction = it->first->current_photon.photon_ray.direction;//光子出射的方向
-        Color photon_color = it->first->current_photon.color;
-        
-        if (photon_direction * input_normal > 0)
-        {
-            input_normal = input_normal * -1;
-        }
-        
-        if (input_normal * input_view < 0)
-        {
-            r += (double)photon_color.r;
-            g += (double)photon_color.g;
-            b += (double)photon_color.b;
-        }
+        input_photon.color.b = (unsigned char)(input_feature.reflect_blue * (double)input_photon.color.b);
+        input_photon.color.g = (unsigned char)(input_feature.reflect_green * (double)input_photon.color.g);
+        input_photon.color.r = (unsigned char)(input_feature.reflect_red * (double)input_photon.color.r);
     }
-    double area = PI * collection.max_value * collection.max_value;
-
-    r /= area;
-    g /= area;
-    b /= area;
-    r *= BRDF_ratio;
-    g *= BRDF_ratio;
-    b *= BRDF_ratio;
-    r = min(r, 255.0);
-    g = min(g, 255.0);
-    b = min(b, 255.0);
     
-    return Color(r, g, b, 255);
+    else
+    {
+        input_photon.color.b = (unsigned char)(input_feature.refract_blue * (double)input_photon.color.b);
+        input_photon.color.g = (unsigned char)(input_feature.refract_green * (double)input_photon.color.g);
+        input_photon.color.r = (unsigned char)(input_feature.refract_red * (double)input_photon.color.r);
+    }
 }
 

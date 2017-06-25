@@ -25,9 +25,9 @@ public:
     Color get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in);
     vector3<double> get_normalvec(vector3<double> target_pos, vector3<double> view_direction);//法向量
     
-    double A, B, C, D;                 //平面方程的四个参数
-    vector3<double> normal_vector;             //平面的法向量
-    vector3<double> passed_point;              //经过的点
+    double A, B, C, D;//平面方程的四个参数
+    vector3<double> normal_vector;//平面的法向量
+    vector3<double> passed_point;//经过的点
     Plane(vector3<double> input_point, vector3<double> input_normal_vector);
     cv::Mat image1 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/huaji.jpeg");  //加载图像
     cv::Mat image3 = cv::imread("/Users/mac/Desktop/programme/program/4st_term/Ray_Tracing/floor.jpg");  //加载图像

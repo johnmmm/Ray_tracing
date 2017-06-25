@@ -32,7 +32,7 @@ void Drawer::set_size(unsigned input_width, unsigned input_height)
     tmp.copyTo(images);
 }
 
-void Drawer::set_pixel(unsigned x, unsigned y, Color color)//???改成那个的
+void Drawer::set_pixel(unsigned x, unsigned y, Color color)//OpenCV颜色居然是反着的
 {
     assert(x < width && y < height);
     
@@ -98,9 +98,9 @@ Color Color::mix_back(Color background_color)
 {
     Color mixed_color;
     double ratio = (double)a / 255;
-    mixed_color.r = (unsigned char)(ratio * (double)r + (1 - ratio) * (double)background_color.r);            //根据灰度来算合成的r
-    mixed_color.g = (unsigned char)(ratio * (double)g + (1 - ratio) * (double)background_color.g);            //根据灰度来算合成的g
-    mixed_color.b = (unsigned char)(ratio * (double)b + (1 - ratio) * (double)background_color.b);            //根据灰度来算合成的b
+    mixed_color.r = (unsigned char)(ratio * (double)r + (1 - ratio) * (double)background_color.r);
+    mixed_color.g = (unsigned char)(ratio * (double)g + (1 - ratio) * (double)background_color.g);
+    mixed_color.b = (unsigned char)(ratio * (double)b + (1 - ratio) * (double)background_color.b);
     mixed_color.a = 255;
     return mixed_color;
 }

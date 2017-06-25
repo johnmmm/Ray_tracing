@@ -26,12 +26,12 @@ public:
     Color get_color_normalvec(vector3<double> target_pos, vector3<double> view_direction, Single_Light light, vector3<double> &in);
     vector3<double> get_normalvec(vector3<double> target_pos, vector3<double> view_direction);//法向量
     
-    vector3<double> sphere_center;         //球心
-    double radius;                        //半径
+    vector3<double> sphere_center;//球心
+    double radius;//半径
 
 private:
     void init();
-    double square_radius;                  //半径平方
+    double square_radius;//半径平方
 };
 
 #endif /* Sphere_hpp */

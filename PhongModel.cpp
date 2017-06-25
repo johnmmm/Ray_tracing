@@ -36,9 +36,6 @@ Color PhongModel::reflect_color(Single_Light light, vector3<double> normal_vecto
     
     if (L_N_dot < 0)
         L_N_dot = 0;
-    //cout << "veiw" << view_direction.x << " " << view_direction.y << view_direction.z << endl;
-    //cout << reverse_view.x << " " << reverse_view.y << " " << reverse_view.z << endl;
-    //cout<<"reverse light " << reverse_light.x << " " << reverse_light.y << " " << reverse_light.z << endl;
     
     vector3<double> angle_bisector = (reverse_light + reverse_view).normallize();          
     double R_V_dot = angle_bisector * normal_vector;
@@ -64,8 +61,6 @@ Color PhongModel::reflect_color(Single_Light light, vector3<double> normal_vecto
     r *= amplify_parameter;
     g *= amplify_parameter;
     b *= amplify_parameter;
-    //cout << r << " " << g << " " << b << endl;
-    //cout << R_V_dot << " " << L_N_dot << endl;
     
     r = min(r, 255.0);
     g = min(g, 255.0);
@@ -81,15 +76,13 @@ double PhongModel::PhongBRDF(vector3<double> normal_vector, vector3<double> in_d
     double L_N_dot = reverse_direction * normal_vector;
     
     if (L_N_dot < limit_zero)
-    {
         return 0;
-    }
+    
     vector3<double> angle_bisector = (reverse_direction + reverse_view).normallize();             //求角平分线
     double R_V_dot = angle_bisector * normal_vector;
+    
     if (R_V_dot < 0)
-    {
         R_V_dot = 0;
-    }
     
     return (pd + ps * pow(R_V_dot, reflect_parameter) / L_N_dot) * amplify_parameter;
 }
